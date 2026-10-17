@@ -1,0 +1,158 @@
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                    tech: ['Orbitron', 'sans-serif'],
+                },
+                colors: {
+                    brand: {
+                        cyan: '#00f2fe',
+                        blue: '#4facfe',
+                        purple: '#7928CA',
+                        magenta: '#FF0080',
+                        gold: '#ffd700',
+                        dark: '#050714',
+                        card: '#0d1326',
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+<style>
+    html, body {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #050714;
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: none;
+    }
+
+    /* Tech Background Grid */
+    .tech-grid {
+        background-size: 36px 36px;
+        background-image: 
+            linear-gradient(to right, rgba(0, 242, 254, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 242, 254, 0.05) 1px, transparent 1px);
+    }
+
+    /* Ambient Glow Background */
+    .ambient-glow {
+        position: absolute;
+        width: 650px;
+        height: 650px;
+        background: radial-gradient(circle, rgba(121, 40, 202, 0.22) 0%, rgba(0, 242, 254, 0.12) 40%, rgba(5, 7, 20, 0) 70%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        pointer-events: none;
+        border-radius: 50%;
+        transition: all 0.8s ease-out;
+    }
+
+    /* SVG Circle Progress Ring Styling */
+    .progress-ring__circle {
+        transition: stroke-dashoffset 0.05s linear;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+        filter: drop-shadow(0px 0px 12px #00f2fe) drop-shadow(0px 0px 24px #7928CA);
+    }
+
+    /* Pulse Ring Glow Animation */
+    @keyframes pulseGlow {
+        0%, 100% {
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3), inset 0 0 15px rgba(121, 40, 202, 0.2);
+        }
+        50% {
+            box-shadow: 0 0 45px rgba(0, 242, 254, 0.7), inset 0 0 30px rgba(121, 40, 202, 0.45);
+        }
+    }
+
+    .pulse-scanner {
+        animation: pulseGlow 2.2s infinite ease-in-out;
+    }
+
+    /* Laser Scan Line */
+    @keyframes laserMove {
+        0% { top: 12%; opacity: 0; }
+        50% { opacity: 1; }
+        100% { top: 88%; opacity: 0; }
+    }
+
+    .scan-line {
+        position: absolute;
+        left: 10%;
+        right: 10%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #00f2fe, #ffd700, #00f2fe, transparent);
+        box-shadow: 0 0 14px #00f2fe, 0 0 8px #ffd700;
+        border-radius: 50%;
+        animation: laserMove 2s infinite ease-in-out;
+        pointer-events: none;
+    }
+
+    /* Countdown Pulse Zoom Effect */
+    @keyframes countZoom {
+        0% {
+            transform: scale(0.4);
+            opacity: 0;
+            filter: blur(12px);
+        }
+        30% {
+            transform: scale(1.18);
+            opacity: 1;
+            filter: blur(0px);
+        }
+        75% {
+            transform: scale(1);
+            opacity: 1;
+            filter: blur(0px);
+        }
+        100% {
+            transform: scale(1.45);
+            opacity: 0;
+            filter: blur(8px);
+        }
+    }
+
+    .animate-count {
+        animation: countZoom 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Background Particle Canvas */
+    #bgCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    /* Card Fade In Animation */
+    .fade-in-up {
+        animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(25px) scale(0.96);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+</style>
